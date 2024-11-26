@@ -1,0 +1,20 @@
+body {
+  margin: 0;
+  background-color: black;
+  color: white;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1.92fr; /* Adjust third column to be smaller */
+}
+
+#lists-div, #tasks-div {
+  position: relative;
+  border-right: 1px solid white;
+  overflow-y: auto; /* Only shows scrollbar if needed */
+  scrollbar-gutter: stable; /* Reserves space for scrollbar to avoid width shifts */
+}
+
+#task-desc-div {
+  /*background-color: red;*/
+  overflow-y: hidden; /* Ensures no scrollbar on the third div */
+}
