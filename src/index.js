@@ -1,5 +1,5 @@
 import "./View/styles.css";
-import {createProject, createTask} from "./Model/data";
+import {projectList, createProject, createTask} from "./Model/data";
 
 
 // const task1 = createTask("Workout", "Say whaaa", "2013", "Normal");
@@ -9,11 +9,8 @@ import {createProject, createTask} from "./Model/data";
 
 
 function initApp () {
-    let lists = [];
-    lists.push(createProject("Default"));
-
-
-    console.log(lists);
+    projectList.push(createProject("Default"));
+    console.log(projectList);
 }
 
 initApp();
