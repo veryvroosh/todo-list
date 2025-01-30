@@ -1,4 +1,4 @@
-export {projectList, createProject, createTask};
+export {projectList, createProject};
 
 let projectList = [];
 
@@ -6,6 +6,13 @@ class Project {
     constructor(projectName) {
         this.projectName = projectName;
         this.projectTasks = [];
+    }
+
+    addTask (title, description, dueDate, priority) {
+        this.projectTasks.push(new Task(title,
+            description || "",
+            dueDate || "No date found",
+            priority));
     }
 
      editProjectName(name) {
@@ -19,7 +26,9 @@ class Project {
 }
 
 function createProject (listName) {
-    return new Project(listName);
+    let project = new Project(listName)
+    projectList.push(project);
+    return project;
 }
 
 class Task {
@@ -50,14 +59,3 @@ class Task {
         project.projectTasks = project.projectTasks.filter(item => item !== this);
     }
 }
-
-function createTask (title, description, dueDate, priority) {
-    return new Task(
-        title,
-        description || "",
-        dueDate || "No date found",
-        priority
-    );
-}
-
-//TODO: delete task, edit task, delete project, modify name of project
