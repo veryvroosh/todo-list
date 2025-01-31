@@ -1,21 +1,21 @@
-export {loadPageSkeleton, displayProjects};
-import {createProject, projectList} from "../Model/data";
+export {loadPageSkeleton, displayProjects, addProjectButton};
+import {projectList} from "../Model/data";
 import TodoAoiLogo from "../Assets/Icons/todo_aoi_logo.png";
-import TodoListLogo from "../Assets/Icons/todo_list_logo.png";
 
+import TodoListLogo from "../Assets/Icons/todo_list_logo.png";
 // general page html structure
 const projectsDiv = document.createElement("div");
-    const logoDiv = document.createElement("div");
-        const todoLogo = document.createElement("img");
-        const todoListLogo = document.createElement("img");
-    const projectListDiv = document.createElement("div");
+const logoDiv = document.createElement("div");
+const todoLogo = document.createElement("img");
+const todoListLogo = document.createElement("img");
+const projectListDiv = document.createElement("div");
+
     const addProjectButton = document.createElement("button");
 
 const tasksDiv = document.createElement("div");
 
+
 const taskDescDiv = document.createElement("div");
-
-
 // adding classes and attributes to the elements
 projectsDiv.id = "projects-div";
 logoDiv.id = "logo-div";
@@ -29,6 +29,7 @@ projectListDiv.id = "project-list-div";
 addProjectButton.id = "add-project-button";
 addProjectButton.textContent = "Add Project";
 tasksDiv.id = "tasks-div";
+
 taskDescDiv.id = "task-desc-div";
 
 function loadPageSkeleton() {
@@ -44,7 +45,9 @@ function loadPageSkeleton() {
     projectsDiv.appendChild(addProjectButton);
 }
 
+
 function displayProjects() {
+    projectListDiv.innerHTML = "";
     projectList.forEach(project => {
         const projectCard = document.createElement("div");
             const projectTitle = document.createElement("div");
@@ -67,8 +70,6 @@ function displayProjects() {
         projectListDiv.appendChild(projectCard);
     })
 }
-
-
 
 /*TODO: inside the displayProjects foreach, you will call the displayTasks function
         with the specific number/name of the project in its parameter to display tasks and addTask

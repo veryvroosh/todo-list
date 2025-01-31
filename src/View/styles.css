@@ -22,7 +22,7 @@ body {
   position: relative;
   padding: 1rem 0.8rem 0;
   display: grid;
-  gap: 2rem;
+  gap: 1.5rem;
   grid-template-rows: auto 1fr max-content;
   user-select: none;
 }
@@ -32,6 +32,7 @@ body {
   align-items: center;
   justify-content: center;
   gap: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 #todo-logo {
@@ -48,7 +49,8 @@ body {
 #project-list-div {
   display: grid;
   align-items: center;
-  grid-template-rows: 5vh;
+  grid-auto-rows: 5vh;
+  gap: 2.5rem;
   width: 100%;
 }
 
@@ -78,7 +80,7 @@ body {
 
 #add-project-button {
   all: unset;
-  position: absolute;
+  position: sticky;
   left: 0;
   right: 0;
   bottom: 0;
