@@ -1,5 +1,6 @@
 import "./View/styles.css";
 import {projectList, createProject} from "./Model/data";
+import {loadPageSkeleton} from "./View/pageLoader";
 
 window.addEventListener("DOMContentLoaded", () => {
     document.body.style.visibility = "visible";
@@ -7,7 +8,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
 
 function initApp () {
-    projectList.push(createProject("Default"));
+    createProject("Default");
+    loadPageSkeleton();
     console.log(projectList);
 }
 

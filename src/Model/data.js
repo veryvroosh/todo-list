@@ -1,4 +1,5 @@
 export {projectList, createProject};
+import {displayProjects} from "../View/pageLoader";
 
 let projectList = [];
 
@@ -28,6 +29,7 @@ class Project {
 function createProject (listName) {
     let project = new Project(listName)
     projectList.push(project);
+    displayProjects();
     return project;
 }
 
