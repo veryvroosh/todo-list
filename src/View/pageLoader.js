@@ -1,4 +1,4 @@
-export {loadPageSkeleton, displayProjects, addProjectButton};
+export {loadPageSkeleton, displayProjects, displayTasks, addProjectButton};
 import {editProjectFunction, deleteProjectFunction} from "../Controller/eventListenerFunctions";
 import {projectList} from "../Model/data";
 import TodoAoiLogo from "../Assets/Icons/todo_aoi_logo.png";
@@ -6,14 +6,15 @@ import TodoAoiLogo from "../Assets/Icons/todo_aoi_logo.png";
 import TodoListLogo from "../Assets/Icons/todo_list_logo.png";
 // general page html structure
 const projectsDiv = document.createElement("div");
-const logoDiv = document.createElement("div");
-const todoLogo = document.createElement("img");
-const todoListLogo = document.createElement("img");
-const projectListDiv = document.createElement("div");
-
+    const logoDiv = document.createElement("div");
+        const todoLogo = document.createElement("img");
+        const todoListLogo = document.createElement("img");
+    const projectListDiv = document.createElement("div");
     const addProjectButton = document.createElement("button");
 
 const tasksDiv = document.createElement("div");
+    const taskListDiv = document.createElement("div");
+    const addTaskButton = document.createElement("button");
 
 
 const taskDescDiv = document.createElement("div");
@@ -30,7 +31,9 @@ projectListDiv.id = "project-list-div";
 addProjectButton.id = "add-project-button";
 addProjectButton.textContent = "Add Project";
 tasksDiv.id = "tasks-div";
-
+taskListDiv.id = "task-list-div";
+addTaskButton.id = "add-task-button";
+addTaskButton.textContent = "Add Task";
 taskDescDiv.id = "task-desc-div";
 
 function loadPageSkeleton() {
@@ -41,9 +44,11 @@ function loadPageSkeleton() {
     projectsDiv.appendChild(logoDiv);
     logoDiv.appendChild(todoLogo);
     logoDiv.appendChild(todoListLogo);
-
     projectsDiv.appendChild(projectListDiv);
     projectsDiv.appendChild(addProjectButton);
+
+    tasksDiv.appendChild(taskListDiv);
+    tasksDiv.appendChild(addTaskButton);
 }
 
 
@@ -70,11 +75,41 @@ function displayProjects() {
 
         projectListDiv.appendChild(projectCard);
 
+        projectCard.addEventListener('click', () => displayTasks(project));
         projectEditButton.addEventListener('click', () => editProjectFunction(project, projectTitle));
         projectDeleteButton.addEventListener('click', () => deleteProjectFunction(project, projectCard));
     })
 }
 
-/*TODO: inside the displayProjects foreach, you will call the displayTasks function
-        with the specific number/name of the project in its parameter to display tasks and addTask
- */
+function displayTasks(project) {
+    taskListDiv.innerHTML = "";
+    addTaskButton.style.visibility = "visible";
+    project.projectTasks.forEach(task => {
+        const taskCard = document.createElement("div");
+            const taskTitleAndStatusDiv = document.createElement("div");
+                const taskStatusButton = document.createElement("button");
+                const taskTitle = document.createElement("div");
+            const taskButtonsDiv = document.createElement("div");
+                const editTaskButton = document.createElement("button");
+                const deleteTaskButton = document.createElement("button");
+
+        taskCard.classList.add("task-card");
+        taskTitleAndStatusDiv.classList.add("task-title-and-status-div");
+        taskStatusButton.classList.add("task-status-button");
+        taskTitle.classList.add("task-title");
+        taskTitle.textContent = `${task.taskTitle}`
+        taskButtonsDiv.classList.add("task-buttons-div");
+        editTaskButton.classList.add("edit-task-button")
+        deleteTaskButton.classList.add("delete-task-button");
+
+        taskCard.appendChild(taskTitleAndStatusDiv);
+        taskTitleAndStatusDiv.appendChild(taskStatusButton);
+        taskTitleAndStatusDiv.appendChild(taskTitle);
+        taskCard.appendChild(taskButtonsDiv);
+        taskButtonsDiv.appendChild(editTaskButton);
+        taskButtonsDiv.appendChild(deleteTaskButton);
+
+        taskListDiv.appendChild(taskCard);
+    })
+}
+

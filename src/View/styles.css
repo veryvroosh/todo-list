@@ -54,7 +54,7 @@ body {
   width: 100%;
 }
 
-.project-card {
+.project-card, .task-card {
   background-color: white;
   box-sizing: border-box;
   padding: 0 1rem 0 1rem;
@@ -64,21 +64,22 @@ body {
   color: black;
   height: 3rem;
   width: 100%;
+  cursor: pointer;
 }
 
-.project-buttons-div {
+.project-buttons-div, .task-buttons-div {
   display: flex;
   justify-content: space-around;
   align-items: center;
   width: 30%;
 }
 
-.project-buttons-div > button {
+.project-buttons-div > button, .task-buttons-div > button, .task-status-button {
   height: 1.5rem;
   width: 1.5rem;
 }
 
-#add-project-button {
+#add-project-button, #add-task-button {
   all: unset;
   position: sticky;
   left: 0;
@@ -95,6 +96,30 @@ body {
   cursor: pointer;
 }
 
-#add-project-button:active {
+#add-project-button:active, #add-task-button:active {
   color: gray;
+}
+
+#tasks-div {
+  position: relative;
+  padding: 1rem 0.8rem 0;
+  display: grid;
+  gap: 1.5rem;
+  grid-template-rows: 1fr max-content;
+  user-select: none;
+}
+
+.task-title-and-status-div {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  width: 30%;
+}
+
+.task-buttons-div {
+  width: 20%;
+}
+
+#add-task-button {
+  visibility: hidden;
 }

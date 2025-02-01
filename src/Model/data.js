@@ -1,5 +1,5 @@
 export {projectList, createProject};
-import {displayProjects} from "../View/pageLoader";
+import {displayProjects, displayTasks} from "../View/pageLoader";
 
 let projectList = [];
 
@@ -10,10 +10,13 @@ class Project {
     }
 
     addTask (title, description, dueDate, priority) {
-        this.projectTasks.push(new Task(title,
+        let task = new Task(title,
             description || "",
             dueDate || "No date found",
-            priority));
+            priority);
+        this.projectTasks.push(task);
+        displayTasks();
+        return task;
     }
 
      editProjectTitle(title) {
@@ -34,26 +37,26 @@ function createProject (projectTitle) {
 
 class Task {
     constructor(title, description, dueDate, priority) {
-        this.title = title;
-        this.description = description;
-        this.dueDate = dueDate;
-        this.priority = priority;
+        this.taskTitle = title;
+        this.taskDescription = description;
+        this.taskDueDate = dueDate;
+        this.taskPriority = priority;
     }
 
     editTitle(name) {
-        this.title = name;
+        this.taskTitle = name;
     }
 
     editDescription(description) {
-        this.description = description;
+        this.taskDescription = description;
     }
 
     editDueDate(date) {
-        this.dueDate = date;
+        this.taskDueDate = date;
     }
 
     editPriority(priority) {
-        this.priority = priority;
+        this.taskPiority = priority;
     }
 
     deleteTask (project) {
