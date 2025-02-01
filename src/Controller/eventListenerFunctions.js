@@ -1,6 +1,12 @@
-export {editProjectFunction};
+export {editProjectFunction, deleteProjectFunction};
 
 function editProjectFunction(project, projectTitle) {
-    project.title = prompt("Enter new title:");
-    projectTitle.textContent = project.title;
+    const newTitle = prompt("Enter new title:");
+    project.editProjectTitle(newTitle);
+    projectTitle.textContent = project.projectTitle;
+}
+
+function deleteProjectFunction(project, projectCard) {
+    project.deleteProject();
+    projectCard.remove();
 }

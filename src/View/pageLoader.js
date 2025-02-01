@@ -1,5 +1,5 @@
 export {loadPageSkeleton, displayProjects, addProjectButton};
-import {editProjectFunction} from "../Controller/eventListenerFunctions";
+import {editProjectFunction, deleteProjectFunction} from "../Controller/eventListenerFunctions";
 import {projectList} from "../Model/data";
 import TodoAoiLogo from "../Assets/Icons/todo_aoi_logo.png";
 
@@ -71,6 +71,7 @@ function displayProjects() {
         projectListDiv.appendChild(projectCard);
 
         projectEditButton.addEventListener('click', () => editProjectFunction(project, projectTitle));
+        projectDeleteButton.addEventListener('click', () => deleteProjectFunction(project, projectCard));
     })
 }
 

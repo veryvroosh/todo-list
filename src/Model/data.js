@@ -16,13 +16,12 @@ class Project {
             priority));
     }
 
-     editProjectName(name) {
-        this.projectName = name;
+     editProjectTitle(title) {
+        this.projectTitle = title;
     }
 
     deleteProject() {
         projectList = projectList.filter(item => item !== this);
-        console.log(projectList);
     }
 }
 
