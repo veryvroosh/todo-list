@@ -4,8 +4,8 @@ import {displayProjects} from "../View/pageLoader";
 let projectList = [];
 
 class Project {
-    constructor(projectName) {
-        this.projectName = projectName;
+    constructor(projectTitle) {
+        this.projectTitle = projectTitle;
         this.projectTasks = [];
     }
 
@@ -26,8 +26,8 @@ class Project {
     }
 }
 
-function createProject (listName) {
-    let project = new Project(listName)
+function createProject (projectTitle) {
+    let project = new Project(projectTitle)
     projectList.push(project);
     displayProjects();
     return project;

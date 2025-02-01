@@ -1,4 +1,5 @@
 export {loadPageSkeleton, displayProjects, addProjectButton};
+import {editProjectFunction} from "../Controller/eventListenerFunctions";
 import {projectList} from "../Model/data";
 import TodoAoiLogo from "../Assets/Icons/todo_aoi_logo.png";
 
@@ -57,7 +58,7 @@ function displayProjects() {
 
         projectCard.classList.add("project-card");
         projectTitle.classList.add("project-title");
-        projectTitle.textContent = `${project.projectName}`;
+        projectTitle.textContent = `${project.projectTitle}`;
         projectButtonsDiv.classList.add("project-buttons-div");
         projectEditButton.classList.add("project-edit-button");
         projectDeleteButton.classList.add("project-delete-button");
@@ -68,6 +69,8 @@ function displayProjects() {
         projectButtonsDiv.appendChild(projectDeleteButton);
 
         projectListDiv.appendChild(projectCard);
+
+        projectEditButton.addEventListener('click', () => editProjectFunction(project, projectTitle));
     })
 }
 
