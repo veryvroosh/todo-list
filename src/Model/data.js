@@ -15,7 +15,6 @@ class Project {
             dueDate || "No date found",
             priority);
         this.projectTasks.push(task);
-        displayTasks();
         return task;
     }
 

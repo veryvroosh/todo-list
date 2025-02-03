@@ -1,4 +1,5 @@
 export {editProjectFunction, deleteProjectFunction};
+import {taskListDiv, addTaskButton} from "../View/pageLoader";
 
 function editProjectFunction(project, projectTitle) {
     event.stopPropagation();
@@ -9,6 +10,13 @@ function editProjectFunction(project, projectTitle) {
 
 function deleteProjectFunction(project, projectCard) {
     event.stopPropagation();
+    project.projectTasks = [];
+    deselectProject();
     project.deleteProject();
     projectCard.remove();
+}
+
+function deselectProject() {
+    taskListDiv.innerHTML = "";
+    addTaskButton.style.visibility = "hidden";
 }

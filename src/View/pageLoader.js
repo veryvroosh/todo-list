@@ -1,4 +1,4 @@
-export {loadPageSkeleton, displayProjects, displayTasks, addProjectButton};
+export {loadPageSkeleton, displayProjects, displayTasks, addProjectButton, taskListDiv, addTaskButton};
 import {editProjectFunction, deleteProjectFunction} from "../Controller/eventListenerFunctions";
 import {projectList} from "../Model/data";
 import TodoAoiLogo from "../Assets/Icons/todo_aoi_logo.png";
