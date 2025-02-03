@@ -1,5 +1,5 @@
 export {loadPageSkeleton, displayProjects, displayTasks, addProjectButton, taskListDiv, addTaskButton};
-import {editProjectFunction, deleteProjectFunction} from "../Controller/eventListenerFunctions";
+import {editProjectFunction, deleteProjectFunction, deleteTaskFunction} from "../Controller/eventListenerFunctions";
 import {projectList} from "../Model/data";
 import TodoAoiLogo from "../Assets/Icons/todo_aoi_logo.png";
 
@@ -110,6 +110,8 @@ function displayTasks(project) {
         taskButtonsDiv.appendChild(deleteTaskButton);
 
         taskListDiv.appendChild(taskCard);
+
+        deleteTaskButton.addEventListener('click', () => deleteTaskFunction(project, task, taskCard));
     })
 }
 
