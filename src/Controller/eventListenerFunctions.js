@@ -1,5 +1,7 @@
-export {editProjectFunction, deleteProjectFunction, deleteTaskFunction};
+export {editProjectFunction, deleteProjectFunction, deleteTaskFunction, escapeStack, deselectProject};
 import {taskListDiv, addTaskButton} from "../View/pageLoader";
+
+const escapeStack = [];
 
 function editProjectFunction(project, projectTitle) {
     event.stopPropagation();
