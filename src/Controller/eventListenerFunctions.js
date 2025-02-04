@@ -1,4 +1,6 @@
-export {editProjectFunction, deleteProjectFunction, deleteTaskFunction, escapeStack, deselectProject};
+import {taskDialog} from "../View/addTaskDialog";
+
+export {editProjectFunction, deleteProjectFunction, deleteTaskFunction, escapeStack, deselectProject, deselectTaskDialog};
 import {taskListDiv, addTaskButton} from "../View/pageLoader";
 
 const escapeStack = [];
@@ -27,4 +29,9 @@ function deleteTaskFunction(project, task, taskCard) {
     event.stopPropagation();
     task.deleteTask(project);
     taskCard.remove();
+}
+
+function deselectTaskDialog() {
+    taskDialog.close();
+    taskDialog.style.visibility = "hidden";
 }

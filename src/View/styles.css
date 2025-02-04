@@ -123,3 +123,19 @@ body {
 #add-task-button {
   visibility: hidden;
 }
+
+#add-task-dialog {
+  display: grid;
+  border: white solid 2px;
+  background-color: gray;
+  border-radius: 15px;
+  visibility: hidden;
+  grid-template-rows: 1fr 5fr;
+  height: 45vh;
+  width: 35vw;
+  z-index: 9999;
+}
+
+::backdrop {
+  backdrop-filter: blur(2px);
+}
