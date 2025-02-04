@@ -1,4 +1,4 @@
-export {createElement};
+export {createElement, appendChildren};
 
 function createElement(tag, id = "", classes = [], text = "") {
     const el = document.createElement(tag);
@@ -8,4 +8,9 @@ function createElement(tag, id = "", classes = [], text = "") {
     if (text) el.textContent = text;
     return el;
 }
+
+function appendChildren(parent, ...children) {
+    children.forEach(child => parent.appendChild(child));
+}
+
 

@@ -1,5 +1,5 @@
 export {taskDialog};
-import {createElement} from "../Controller/utils";
+import {createElement, appendChildren} from "../Controller/utils";
 
 const taskDialog = createElement("dialog", "add-task-dialog");
     const taskDialogTitle = createElement("p", "task-dialog-title");
@@ -9,3 +9,7 @@ const taskDialog = createElement("dialog", "add-task-dialog");
         const taskPriorityAndDateForm = createElement("div", "task-desc-form");
 
 
+taskDialogTitle.textContent = "Add Task";
+
+appendChildren(taskDialog, taskDialogTitle, taskForm);
+appendChildren(taskForm, taskTitleForm, taskDescForm, taskPriorityAndDateForm);

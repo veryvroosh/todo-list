@@ -4,7 +4,7 @@ import {taskDialog} from "./addTaskDialog";
 import {projectList} from "../Model/data";
 import TodoAoiLogo from "../Assets/Icons/todo_aoi_logo.png";
 import TodoListLogo from "../Assets/Icons/todo_list_logo.png";
-import {createElement} from "../Controller/utils";
+import {appendChildren, createElement} from "../Controller/utils";
 
 // general page html structure
 const projectsDiv = createElement("div", "projects-div");
@@ -30,21 +30,11 @@ addProjectButton.textContent = "Add Project";
 addTaskButton.textContent = "Add Task";
 
 function loadPageSkeleton() {
-    document.body.appendChild(projectsDiv);
-    document.body.appendChild(tasksDiv);
-    document.body.appendChild(taskDescDiv);
-
-    projectsDiv.appendChild(logoDiv);
-    logoDiv.appendChild(todoLogo);
-    logoDiv.appendChild(todoListLogo);
-    projectsDiv.appendChild(projectListDiv);
-    projectsDiv.appendChild(addProjectButton);
-
-    tasksDiv.appendChild(taskListDiv);
-    tasksDiv.appendChild(taskDialog);
-    tasksDiv.appendChild(addTaskButton);
+    appendChildren(document.body, projectsDiv, tasksDiv, taskDescDiv);
+    appendChildren(projectsDiv, logoDiv, projectListDiv, addProjectButton);
+    appendChildren(logoDiv, todoLogo, todoListLogo);
+    appendChildren(tasksDiv, taskDialog, taskListDiv, addTaskButton);
 }
-
 
 function displayProjects() {
     projectListDiv.innerHTML = "";
@@ -58,12 +48,9 @@ function displayProjects() {
 
         projectTitle.textContent = `${project.projectTitle}`;
 
-        projectCard.appendChild(projectTitle);
-        projectCard.appendChild(projectButtonsDiv);
-        projectButtonsDiv.appendChild(projectEditButton);
-        projectButtonsDiv.appendChild(projectDeleteButton);
-
-        projectListDiv.appendChild(projectCard);
+        appendChildren(projectCard, projectTitle, projectButtonsDiv);
+        appendChildren(projectButtonsDiv, projectEditButton, projectDeleteButton);
+        appendChildren(projectListDiv, projectCard);
 
         projectCard.addEventListener('click', () => displayTasks(project));
         projectEditButton.addEventListener('click', () => editProjectFunction(project, projectTitle));
@@ -86,18 +73,13 @@ function displayTasks(project) {
 
         taskTitle.textContent = `${task.taskTitle}`
 
-        taskCard.appendChild(taskTitleAndStatusDiv);
-        taskTitleAndStatusDiv.appendChild(taskStatusButton);
-        taskTitleAndStatusDiv.appendChild(taskTitle);
-        taskCard.appendChild(taskButtonsDiv);
-        taskButtonsDiv.appendChild(editTaskButton);
-        taskButtonsDiv.appendChild(deleteTaskButton);
-
-        taskListDiv.appendChild(taskCard);
+        appendChildren(taskCard, taskTitleAndStatusDiv, taskButtonsDiv);
+        appendChildren(taskTitleAndStatusDiv, taskStatusButton, taskTitle);
+        appendChildren(taskButtonsDiv, editTaskButton, deleteTaskButton);
+        appendChildren(taskListDiv, taskCard);
 
         deleteTaskButton.addEventListener('click', () => deleteTaskFunction(project, task, taskCard));
 
         escapeStack.push(deselectProject)
     })
 }
-
