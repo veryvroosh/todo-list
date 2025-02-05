@@ -1,4 +1,4 @@
-export {createElement, appendChildren};
+export {createElement, appendChildren, linkLabelToInput};
 
 function createElement(tag, id = "", classes = [], text = "") {
     const el = document.createElement(tag);
@@ -13,4 +13,7 @@ function appendChildren(parent, ...children) {
     children.forEach(child => parent.appendChild(child));
 }
 
-
+function linkLabelToInput(label, input, id) {
+    label.htmlFor = id;
+    input.id = id;
+}

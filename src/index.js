@@ -12,7 +12,6 @@ window.addEventListener("DOMContentLoaded", () => {
 function initApp () {
     createProject("Default");
     loadPageSkeleton();
-    console.log(projectList);
     projectList[0].addTask("First Task");
 }
 

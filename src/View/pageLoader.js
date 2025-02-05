@@ -1,4 +1,4 @@
-export {loadPageSkeleton, displayProjects, displayTasks, addProjectButton, taskListDiv, addTaskButton};
+export {loadPageSkeleton, displayProjects, displayTasks, addProjectButton, taskListDiv, addTaskButton, currentProject};
 import {editProjectFunction, deleteProjectFunction, deleteTaskFunction, escapeStack, deselectProject} from "../Controller/eventListenerFunctions";
 import {taskDialog} from "./addTaskDialog";
 import {projectList} from "../Model/data";
@@ -36,6 +36,7 @@ function loadPageSkeleton() {
     appendChildren(tasksDiv, taskDialog, taskListDiv, addTaskButton);
 }
 
+let currentProject = null;
 function displayProjects() {
     projectListDiv.innerHTML = "";
     projectList.forEach(project => {
@@ -52,7 +53,10 @@ function displayProjects() {
         appendChildren(projectButtonsDiv, projectEditButton, projectDeleteButton);
         appendChildren(projectListDiv, projectCard);
 
-        projectCard.addEventListener('click', () => displayTasks(project));
+        projectCard.addEventListener('click', () => {
+            currentProject = project;
+            displayTasks(project);
+        });
         projectEditButton.addEventListener('click', () => editProjectFunction(project, projectTitle));
         projectDeleteButton.addEventListener('click', () => deleteProjectFunction(project, projectCard));
     })

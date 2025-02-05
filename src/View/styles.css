@@ -131,9 +131,39 @@ body {
   border-radius: 15px;
   visibility: hidden;
   grid-template-rows: 1fr 5fr;
-  height: 45vh;
+  height: 50vh;
   width: 35vw;
   z-index: 9999;
+}
+
+#add-task-dialog > p {
+  font-size: 20px;
+  font-weight: 600;
+  justify-self: center;
+  padding: 0;
+}
+
+#add-task-dialog > form {
+  display: grid;
+  grid-template-rows: 1fr 3fr 1fr 1fr;
+  gap: 1rem;
+}
+
+#task-title-form, #task-desc-form, #task-date-form {
+  display: grid;
+  grid-template-rows: max-content 1fr;
+}
+
+#task-priority-form {
+  display: grid;
+  gap: 3vw;
+  grid-template-columns: max-content max-content max-content;
+}
+
+#task-priority-date-form-div, #task-dialog-buttons {
+  display: grid;
+  gap: 4rem;
+  grid-template-columns: 1fr 1fr;
 }
 
 ::backdrop {

@@ -1,7 +1,6 @@
-import {taskDialog} from "../View/addTaskDialog";
-
-export {editProjectFunction, deleteProjectFunction, deleteTaskFunction, escapeStack, deselectProject, deselectTaskDialog};
-import {taskListDiv, addTaskButton} from "../View/pageLoader";
+export {editProjectFunction, deleteProjectFunction, deleteTaskFunction, escapeStack, deselectProject, deselectTaskDialog, getSelectedPriority, submitTaskForm, cancelTaskForm};
+import {taskListDiv, addTaskButton, currentProject, displayTasks} from "../View/pageLoader";
+import {taskDialog, taskForm, taskPriorityForm} from "../View/addTaskDialog";
 
 const escapeStack = [];
 
@@ -20,15 +19,33 @@ function deleteProjectFunction(project, projectCard) {
     projectCard.remove();
 }
 
-function deselectProject() {
-    taskListDiv.innerHTML = "";
-    addTaskButton.style.visibility = "hidden";
-}
-
 function deleteTaskFunction(project, task, taskCard) {
     event.stopPropagation();
     task.deleteTask(project);
     taskCard.remove();
+}
+
+function getSelectedPriority() {
+    return taskPriorityForm.querySelector('input[name="task-priority"]:checked')?.value;
+}
+
+function submitTaskForm(title, desc, date, priority) {
+    currentProject.addTask(title, desc, date, priority);
+    displayTasks(currentProject);
+    taskForm.reset();
+    taskDialog.close();
+    taskDialog.style.visibility = "hidden";
+}
+
+function cancelTaskForm() {
+    taskForm.reset();
+    taskDialog.close();
+    taskDialog.style.visibility = "hidden";
+}
+
+function deselectProject() {
+    taskListDiv.innerHTML = "";
+    addTaskButton.style.visibility = "hidden";
 }
 
 function deselectTaskDialog() {
