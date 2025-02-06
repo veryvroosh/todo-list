@@ -1,5 +1,5 @@
-export {editProjectFunction, deleteProjectFunction, deleteTaskFunction, escapeStack, deselectProject, deselectTaskDialog, getSelectedPriority, submitTaskForm, cancelTaskForm};
-import {taskListDiv, addTaskButton, currentProject, displayTasks} from "../View/pageLoader";
+export {editProjectFunction, deleteProjectFunction, deleteTaskFunction, escapeStack, deselectProject, deselectTaskDialog, getSelectedPriority, submitTaskForm, cancelTaskForm, deselectTask};
+import {taskListDiv, addTaskButton, currentProject, displayTasks, taskTitleDiv, taskDescDiv, taskDateDiv, taskPriorityDiv} from "../View/pageLoader";
 import {taskDialog, taskForm, taskPriorityForm} from "../View/addTaskDialog";
 
 const escapeStack = [];
@@ -26,7 +26,7 @@ function deleteTaskFunction(project, task, taskCard) {
 }
 
 function getSelectedPriority() {
-    return taskPriorityForm.querySelector('input[name="task-priority"]:checked')?.value;
+    return taskPriorityForm.value;
 }
 
 function submitTaskForm(title, desc, date, priority) {
@@ -51,4 +51,11 @@ function deselectProject() {
 function deselectTaskDialog() {
     taskDialog.close();
     taskDialog.style.visibility = "hidden";
+}
+
+function deselectTask() {
+    taskTitleDiv.innerHTML = "";
+    taskDescDiv.innerHTML = "";
+    taskDateDiv.innerHTML = "";
+    taskPriorityDiv.innerHTML = "";
 }

@@ -1,6 +1,7 @@
 body {
   margin: 0;
   background-color: black;
+  font-size: 17px;
   color: white;
   height: 100vh;
   display: grid;
@@ -14,8 +15,11 @@ body {
   scrollbar-gutter: stable; /* Reserves space for scrollbar to avoid width shifts */
 }
 
-#task-desc-div {
+#task-info-div {
   overflow-y: hidden; /* Ensures no scrollbar on the third div */
+  display: grid;
+  grid-auto-rows: 4rem 1fr 3rem;
+  padding: 0.8rem 0.2rem;
 }
 
 #projects-div {
@@ -117,6 +121,8 @@ body {
 }
 
 .task-buttons-div {
+  display: flex;
+  justify-content: flex-end;
   width: 20%;
 }
 
@@ -168,4 +174,27 @@ body {
 
 ::backdrop {
   backdrop-filter: blur(2px);
+}
+
+#task-info-div > div {
+  padding: 1rem;
+  font-size: 18px;
+}
+
+#task-info-div > #task-title-div {
+  font-size: 26px;
+}
+
+#task-desc-div {
+  overflow-y: auto; /* Only shows scrollbar if needed */
+  scrollbar-gutter: stable; /* Reserves space for scrollbar to avoid width shifts */
+}
+
+#task-date-priority-div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+#task-date-div {
+  justify-self: end;
 }

@@ -12,7 +12,7 @@ const taskDialog = createElement("dialog", "add-task-dialog");
             const taskDescLabel = createElement("label", "task-desc-label");
             const taskDescInput = createElement("textarea", "task-desc-input");
         const taskPriorityDateFormDiv = createElement("div", "task-priority-date-form-div");
-            const taskPriorityForm = createElement("div", "task-priority-form");
+            const taskPriorityForm = createElement("select", "task-priority-form");
             const taskDateForm = createElement("div", "task-date-form");
                 const taskDateLabel = createElement("label", "task-date-label");
                 const taskDateInput = createElement("input", "task-date-input");
@@ -43,23 +43,12 @@ taskSubmitButton.textContent = "Submit";
 taskCancelButton.textContent = "Cancel";
 
 const priorities = ["Low", "Medium", "High"];
-priorities.forEach(priority => {
-    const radioWrapper = createElement("div", "", "radio-wrapper");
-    const radioInput = createElement("input", "", "task-priority-input");
-    const radioLabel = createElement("label", "", "task-priority-label");
-
-    radioInput.type = "radio";
-    radioInput.name = "task-priority"; // same name groups them together
-    radioInput.id = `priority-${priority.toLowerCase()}`;
-    radioInput.value = priority.toLowerCase();
-
-    if (priority === "Medium") radioInput.checked = true;
-
-    radioLabel.htmlFor = radioInput.id;
-    radioLabel.textContent = priority;
-
-    appendChildren(radioWrapper, radioInput, radioLabel);
-    taskPriorityForm.appendChild(radioWrapper);
+priorities.forEach((priority) => {
+    const option = document.createElement("option");
+    option.value = priority;
+    option.textContent = priority;
+    if (priority === "Medium") option.selected = true;
+    taskPriorityForm.appendChild(option);
 });
 
 taskDateInput.type = "date";

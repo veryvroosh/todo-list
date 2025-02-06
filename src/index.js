@@ -12,7 +12,7 @@ window.addEventListener("DOMContentLoaded", () => {
 function initApp () {
     createProject("Default");
     loadPageSkeleton();
-    projectList[0].addTask("First Task");
+    projectList[0].addTask("First Task", "HELLO GUYS WELCOME BACK TO LETS PLAY", "2025, 05, 23", "High");
 }
 
 document.addEventListener('keydown', (event) => {
