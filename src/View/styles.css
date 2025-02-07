@@ -17,9 +17,14 @@ body {
 
 #task-info-div {
   overflow-y: hidden; /* Ensures no scrollbar on the third div */
+  display: contents;
+}
+
+#task-content-wrapper, #task-edit-wrapper {
   display: grid;
-  grid-auto-rows: 4rem 1fr 3rem;
-  padding: 0.8rem 0.2rem;
+  overflow-y: hidden; /* Ensures no scrollbar on the third div */
+  grid-template-rows: 1fr 10fr 1fr;
+  padding: 1.8rem 1.2rem;
 }
 
 #projects-div {
@@ -177,24 +182,36 @@ body {
 }
 
 #task-info-div > div {
-  padding: 1rem;
   font-size: 18px;
 }
 
-#task-info-div > #task-title-div {
+#task-title-and-edit-div, #task-title-and-done-div {
+  display: flex;
+}
+
+#task-title-and-edit-div > #task-title-div,
+#task-title-and-done-div > #task-title-input-edit {
+  width: 80%;
   font-size: 26px;
 }
 
-#task-desc-div {
+#task-edit-button, #task-edit-done-button {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-left: auto;
+}
+
+#task-desc-div, #task-desc-input-edit {
   overflow-y: auto; /* Only shows scrollbar if needed */
   scrollbar-gutter: stable; /* Reserves space for scrollbar to avoid width shifts */
 }
 
-#task-date-priority-div {
+#task-date-priority-div, #task-date-priority-div-edit {
   display: grid;
+  align-items: end;
   grid-template-columns: 1fr 1fr;
 }
 
-#task-date-div {
+#task-date-div, #task-date-input-edit {
   justify-self: end;
 }

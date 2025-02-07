@@ -1,5 +1,5 @@
-export {loadPageSkeleton, displayProjects, displayTasks, addProjectButton, taskListDiv, addTaskButton, currentProject, taskTitleDiv, taskDescDiv, taskDateDiv, taskPriorityDiv};
-import {editProjectFunction, deleteProjectFunction, deleteTaskFunction, escapeStack, deselectProject, deselectTask} from "../Controller/eventListenerFunctions";
+export {loadPageSkeleton, displayProjects, displayTasks, addProjectButton, taskListDiv, addTaskButton, currentProject, taskTitleDiv, taskDescDiv, taskDateDiv, taskPriorityDiv, taskEditButton, taskTitleAndEditDiv, currentTask, taskDatePriorityDiv, taskInfoDiv, taskTitleAndDoneDiv, taskTitleInputEdit, taskEditDoneButton, taskDescInputEdit, taskDatePriorityDivEdit, taskPriorityInputEdit, taskDateInputEdit, taskEditWrapper, taskContentWrapper, displayTaskDesc};
+import {editProjectFunction, deleteProjectFunction, deleteTaskFunction, escapeStack, deselectProject, deselectTask, editTaskFunction} from "../Controller/eventListenerFunctions";
 import {taskDialog} from "./addTaskDialog";
 import {projectList} from "../Model/data";
 import TodoAoiLogo from "../Assets/Icons/todo_aoi_logo.png";
@@ -20,11 +20,24 @@ const tasksDiv = createElement("div", "tasks-div");
 
 
 const taskInfoDiv = createElement("div", "task-info-div");
-    const taskTitleDiv = createElement("div", "task-title-div");
-    const taskDescDiv = createElement("div", "task-desc-div");
-    const taskDatePriorityDiv = createElement("div", "task-date-priority-div");
-        const taskPriorityDiv = createElement("div", "task-priority-div");
-        const taskDateDiv = createElement("div", "task-date-div");
+    const taskContentWrapper = createElement("div", "task-content-wrapper");
+        const taskTitleAndEditDiv = createElement("div", "task-title-and-edit-div");
+            const taskTitleDiv = createElement("div", "task-title-div");
+            const taskEditButton = createElement("button", "task-edit-button");
+        const taskDescDiv = createElement("div", "task-desc-div");
+        const taskDatePriorityDiv = createElement("div", "task-date-priority-div");
+            const taskPriorityDiv = createElement("div", "task-priority-div");
+            const taskDateDiv = createElement("div", "task-date-div");
+
+const taskEditWrapper = createElement("div", "task-edit-wrapper");
+    const taskTitleAndDoneDiv = createElement("div", "task-title-and-done-div");
+        const taskTitleInputEdit = createElement("input", "task-title-input-edit");
+        const taskEditDoneButton = createElement("button", "task-edit-done-button");
+    const taskDescInputEdit = createElement("textarea", "task-desc-input-edit");
+    const taskDatePriorityDivEdit = createElement("div", "task-date-priority-div-edit");
+        const taskPriorityInputEdit = createElement("select", "task-priority-input-edit");
+        const taskDateInputEdit = createElement("input", "task-date-input-edit");
+
 
 // adding attributes to the elements
 todoLogo.src = TodoAoiLogo;
@@ -39,7 +52,9 @@ function loadPageSkeleton() {
     appendChildren(projectsDiv, logoDiv, projectListDiv, addProjectButton);
     appendChildren(logoDiv, todoLogo, todoListLogo);
     appendChildren(tasksDiv, taskDialog, taskListDiv, addTaskButton);
-    appendChildren(taskInfoDiv, taskTitleDiv, taskDescDiv, taskDatePriorityDiv);
+    appendChildren(taskInfoDiv, taskContentWrapper);
+    appendChildren(taskContentWrapper, taskTitleAndEditDiv, taskDescDiv, taskDatePriorityDiv)
+    appendChildren(taskTitleAndEditDiv, taskTitleDiv)
     appendChildren(taskDatePriorityDiv, taskPriorityDiv, taskDateDiv);
 }
 
@@ -62,6 +77,7 @@ function displayProjects() {
 
         projectCard.addEventListener('click', () => {
             currentProject = project;
+            deselectTask();
             displayTasks(project);
         });
         projectEditButton.addEventListener('click', () => editProjectFunction(project, projectTitle));
@@ -95,11 +111,20 @@ function displayTasks(project) {
     })
 }
 
+let currentTask = null;
 function displayTaskDesc(task) {
+    currentTask = task;
+    appendChildren(taskTitleAndEditDiv, taskTitleDiv, taskEditButton);
+
+    const dueDate = new Date(task.taskDueDate);
+    const formattedDate = dueDate.toISOString().split("T")[0]; // Converts to YYYY-MM-DD
+
+
     taskTitleDiv.textContent = task.taskTitle;
     taskDescDiv.textContent = task.taskDescription;
-    taskDateDiv.textContent = task.taskDueDate;
+    taskDateDiv.textContent = formattedDate;
     taskPriorityDiv.textContent = task.taskPriority;
+
 
     escapeStack.push(deselectTask)
 }
